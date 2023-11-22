@@ -23,9 +23,9 @@ public class Login {
 
 FileIO io = new FileIO();
     static Login login = new Login();
-    private static final String userfile = "/Users/jimmymeggele/Documents/Intellij/Voressp3/src/main/java/org/example/Users.txt";
-    private static final String seriesfile = "/Users/jimmymeggele/Documents/Intellij/Voressp3/src/main/java/org/example/100bedsteserier.txt";
-    private static final String moviefile = "/Users/jimmymeggele/Documents/Intellij/Voressp3/src/main/java/org/example/100bedstefilm.txt";
+    private static final String userfile = "/Users/jimmymeggele/Documents/Intellij/SP3-newnew/Users.txt";
+    private static final String seriesfile = "/Users/jimmymeggele/Documents/Intellij/SP3-newnew/100bedsteserier.txt";
+    private static final String moviefile = "/Users/jimmymeggele/Documents/Intellij/SP3-newnew/100bedstefilm.txt";
 
 
 
