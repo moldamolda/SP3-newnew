@@ -16,7 +16,6 @@ public class FileIO {
 
     public ArrayList<Media> readMovieData(String path) {
         ArrayList<Media> movieList = new ArrayList<>();
-
         try (Scanner scanner = new Scanner(new File(path))) {
             while (scanner.hasNextLine()) {
                 //Scanning next line
@@ -35,7 +34,7 @@ public class FileIO {
                 ArrayList<String> movieCategories = new ArrayList<>(Arrays.asList(categories));
 
                 //Making movie object with the parameters
-                Movie movie = new Movie(title, movieCategories, release, rating);
+                Media movie = new Movie(title, movieCategories, release, rating);
                 //adding movie to my movieList
                 movieList.add(movie);
             }
