@@ -6,7 +6,7 @@ import java.util.List;
 public class User {
 
     private String userName;
-    private String passWord;
+    private String passWord; ´
 
 
 Login log = new Login();
