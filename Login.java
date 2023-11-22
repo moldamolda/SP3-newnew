@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -20,11 +21,11 @@ public class Login {
     public ArrayList<String> savedmovies = new ArrayList<>();
     public  ArrayList<String> savedseries = new ArrayList<>();
 
-
-
-    private static final String userfile = "C:/Users/danie/IdeaProjects/SP3-newnew/Users.txt";
-    private static final String seriesfile = "C:/Users/danie/IdeaProjects/SP3-newnew/100bedsteserier.txt";
-    private static final String moviefile = "C:/Users/danie/IdeaProjects/SP3-newnew/100bedstefilm.txt";
+FileIO io = new FileIO();
+    static Login login = new Login();
+    private static final String userfile = "/Users/jimmymeggele/Documents/Intellij/Voressp3/src/main/java/org/example/Users.txt";
+    private static final String seriesfile = "/Users/jimmymeggele/Documents/Intellij/Voressp3/src/main/java/org/example/100bedsteserier.txt";
+    private static final String moviefile = "/Users/jimmymeggele/Documents/Intellij/Voressp3/src/main/java/org/example/100bedstefilm.txt";
 
 
 
