@@ -9,6 +9,7 @@ import java.util.Scanner;
 public class Login {
     Streamingservice s1;
     Scanner scanner = new Scanner(System.in);
+    TextUI ui = new TextUI();
     ArrayList<User> users = new ArrayList<>();
     public ArrayList<String> watchedmovies = new ArrayList<>();
     public  ArrayList<String> watchedseries = new ArrayList<>();
@@ -100,6 +101,8 @@ FileIO io = new FileIO();
         }
     }
 
+
+
     public void searchformovie() {
         System.out.println("Enter the name of the movie you're looking for: ");
         List<Media> allMovies = io.readMovieData(moviefile);
@@ -111,8 +114,7 @@ FileIO io = new FileIO();
                 int choise = Integer.parseInt(scanner.nextLine());
                 switch(choise){
                     case 1:
-                        System.out.println("You are now watching " + movie.getTitle());
-                        watchedmovies.add(movie.getTitle());
+                        ui.addToWatchLaterList(login, movie);
                         movieFound = true;
                         displaychoise();
                         break;
