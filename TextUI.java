@@ -1,6 +1,6 @@
 public class TextUI extends FileIO{
 
-    public void displayMessage(String msg){
+   /* public void displayMessage(String msg){
         System.out.println(msg);
     }
 
@@ -67,6 +67,6 @@ public class TextUI extends FileIO{
 
         System.out.println("Would you like to watch a show from the list? \n ** Y/N **");
 
-    }
+    }*/
 
 }
