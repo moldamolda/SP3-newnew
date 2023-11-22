@@ -6,6 +6,11 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Login {
+
+    FileIO io = new FileIO();
+    TextUI ui = new TextUI();
+    static Login login = new Login();
+
     Streamingservice s1;
     Scanner scanner = new Scanner(System.in);
     ArrayList<User> users = new ArrayList<>();
@@ -21,17 +26,15 @@ public class Login {
     private static final String seriesfile = "/Users/jimmymeggele/Documents/Intellij/Voressp3/src/main/java/org/example/100bedsteserier.txt";
     private static final String moviefile = "/Users/jimmymeggele/Documents/Intellij/Voressp3/src/main/java/org/example/100bedstefilm.txt";
 
-    public static void main(String[] args) {
-        login.startmenu();
-    }
+
 
     public void startmenu() {
         System.out.println("Welcome to betflmix");
         System.out.println("1) Create an account");
         System.out.println("2) login");
         try {
-            int choise = Integer.parseInt(scanner.nextLine());
-            switch (choise) {
+            int choice = Integer.parseInt(scanner.nextLine());
+            switch (choice) {
                 case 1:
                     createAccount();
                     break;
@@ -39,7 +42,7 @@ public class Login {
                     login();
                     break;
                 default:
-                    System.out.println("Invalid choise please try again");
+                    System.out.println("Invalid choice please try again");
                     startmenu();
             }
         } catch (NumberFormatException e) {
@@ -80,8 +83,7 @@ public class Login {
                 int choise = Integer.parseInt(scanner.nextLine());
                 switch(choise){
                     case 1:
-                        System.out.println("You are now watching " + series.getTitle());
-                        watchedseries.add(series.getTitle());
+                        ui.watchedSerie(series);
                         seriesfound = true;
                         displayChoice();
                         break;
@@ -93,8 +95,8 @@ public class Login {
             }
         }
         if (!seriesfound) {
-            System.out.println("Movie not found try agian");
-            searchforseries();
+            ui.mediaNotFound();
+            login.searchForSeries();
         }
     }
 
@@ -153,8 +155,8 @@ public class Login {
         for (Media movie : Movies) {
             if (chosenmovie.equalsIgnoreCase(movie.getTitle())) {
                 System.out.println("Do you want to 1) watch the movie or 2) save the movie");
-                int choise = Integer.parseInt(scanner.nextLine());
-                switch(choise){
+                int choice = Integer.parseInt(scanner.nextLine());
+                switch(choice){
                     case 1:
                         ui.watchedMovie(movie);
                         chosenmoviefound = true;
@@ -195,10 +197,10 @@ public class Login {
             SearchSerieGenre();
         }
         System.out.println("Enter the title of the movie you want to see");
-        String chosenseries = scanner.nextLine().trim();
+        String chosenSeries = scanner.nextLine().trim();
         boolean chosenseriesfound = false;
         for (Media series : Series) {
-            if (chosenseries.equalsIgnoreCase(series.getTitle())) {
+            if (chosenSeries.equalsIgnoreCase(series.getTitle())) {
                 System.out.println("Do you want to 1) watch the series or 2) save the series");
                 int choise = Integer.parseInt(scanner.nextLine());
                 switch(choise){
@@ -260,7 +262,7 @@ public class Login {
         try (FileWriter writer = new FileWriter(userfile, true)) {
             writer.write(username + " ; " + password + "\n");
         } catch (IOException e) {
-            System.out.println("couldnt save account");
+            System.out.println("couldn't save account");
         }
     }
 

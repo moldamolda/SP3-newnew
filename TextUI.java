@@ -1,5 +1,6 @@
 public class TextUI extends FileIO{
     Login login = new Login();
+    User user = new User("","");
 
    /* public void displayMessage(String msg){
         System.out.println(msg);
@@ -19,7 +20,7 @@ public class TextUI extends FileIO{
     }
 
     public void displayWatchedMovie(User user){
-        User name = new User("","");
+
 
         System.out.println(name.getUserName() + "," + " These are the movies that you have watched:");
 
@@ -32,7 +33,7 @@ public class TextUI extends FileIO{
     }
 
     public void displaySavedMovie(User user){
-        User name = new User("","");
+
 
         System.out.println(name.getUserName()+ "," + " These are the movies you have saved for later viewing:");
 
@@ -45,7 +46,7 @@ public class TextUI extends FileIO{
     }
 
     public void displayWatchedSeries(User user){
-        User name = new User("","");
+
 
         System.out.println(name.getUserName()+ "," + " This is a list of shows that you have watched:");
 
@@ -58,7 +59,7 @@ public class TextUI extends FileIO{
     }
 
     public void displaySavedSeries(User user){
-        User name = new User("","");
+
 
         System.out.println(name.getUserName()+ "," + " This is a list of shows you have saved for later viewing:");
 
@@ -88,6 +89,7 @@ public class TextUI extends FileIO{
         System.out.println("You have now saved " + series.getTitle());
         login.savedseries.add(series.getTitle());
     }
+
 
     //metode til at adde et medie til watchedList
     public void watchedSerie(Media series){
