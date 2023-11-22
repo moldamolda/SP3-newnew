@@ -1,4 +1,3 @@
-import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -10,14 +9,14 @@ public class Login {
     Streamingservice s1;
     Scanner scanner = new Scanner(System.in);
     ArrayList<User> users = new ArrayList<>();
-    public ArrayList<String> watchedmovies = new ArrayList<>();
+    public ArrayList<String> watchedMovies = new ArrayList<>();
     public  ArrayList<String> watchedseries = new ArrayList<>();
 
     public ArrayList<String> savedmovies = new ArrayList<>();
     public  ArrayList<String> savedseries = new ArrayList<>();
 
-FileIO io = new FileIO();
-    static Login login = new Login();
+
+
     private static final String userfile = "/Users/jimmymeggele/Documents/Intellij/Voressp3/src/main/java/org/example/Users.txt";
     private static final String seriesfile = "/Users/jimmymeggele/Documents/Intellij/Voressp3/src/main/java/org/example/100bedsteserier.txt";
     private static final String moviefile = "/Users/jimmymeggele/Documents/Intellij/Voressp3/src/main/java/org/example/100bedstefilm.txt";
@@ -69,7 +68,7 @@ FileIO io = new FileIO();
 
 
 
-    public void searchforseries(){
+    public void searchForSeries(){
         System.out.println("Enter the name of the series you're looking for: ");
         List<Media> allseries = new ArrayList<>();
         allseries =   io.readSeriesData(seriesfile);
@@ -84,13 +83,12 @@ FileIO io = new FileIO();
                         System.out.println("You are now watching " + series.getTitle());
                         watchedseries.add(series.getTitle());
                         seriesfound = true;
-                        displaychoise();
+                        displayChoice();
                         break;
                     case 2:
-                        System.out.println("You have now saved " + series.getTitle());
-                        savedseries.add(series.getTitle());
+                        ui.saveSerie(series);
                         seriesfound = true;
-                        displaychoise();
+                        displayChoice();
                 }
             }
         }
@@ -100,7 +98,7 @@ FileIO io = new FileIO();
         }
     }
 
-    public void searchformovie() {
+    public void searchForMovie() {
         System.out.println("Enter the name of the movie you're looking for: ");
         List<Media> allMovies = io.readMovieData(moviefile);
         String search = scanner.nextLine().trim();
@@ -111,16 +109,14 @@ FileIO io = new FileIO();
                 int choise = Integer.parseInt(scanner.nextLine());
                 switch(choise){
                     case 1:
-                        System.out.println("You are now watching " + movie.getTitle());
-                        watchedmovies.add(movie.getTitle());
+                        ui.watchedMovie(movie);
                         movieFound = true;
-                        displaychoise();
+                        displayChoice();
                         break;
                     case 2:
-                        System.out.println("You have now saved " + movie.getTitle());
-                        savedmovies.add(movie.getTitle());
+                        ui.saveMovie(movie);
                         movieFound = true;
-                        displaychoise();
+                        displayChoice();
                 }
 
             }
@@ -128,12 +124,12 @@ FileIO io = new FileIO();
 
         if (!movieFound) {
             System.out.println("Movie not found. Please try again.");
-            searchformovie();
+            searchForMovie();
         }
     }
 
 
-    public void Searchmoviegenre() {
+    public void SearchMovieGenre() {
         System.out.println("Enter the name of the genre you're looking for: ");
         ArrayList<Media> Movies = io.readMovieData(moviefile);
         String search = scanner.nextLine().trim();
@@ -148,8 +144,8 @@ FileIO io = new FileIO();
             }
         }
         if (!movieFound) {
-            System.out.println("Movie not found, try again");
-            Searchmoviegenre();
+            ui.mediaNotFound();
+            SearchMovieGenre();
         }
         System.out.println("Enter the title of the movie you want to see");
         String chosenmovie = scanner.nextLine().trim();
@@ -160,29 +156,27 @@ FileIO io = new FileIO();
                 int choise = Integer.parseInt(scanner.nextLine());
                 switch(choise){
                     case 1:
-                        System.out.println("You are now watching " + movie.getTitle());
-                        watchedmovies.add(movie.getTitle());
+                        ui.watchedMovie(movie);
                         chosenmoviefound = true;
-                        displaychoise();
+                        displayChoice();
                         break;
                     case 2:
-                        System.out.println("You have now saved " + movie.getTitle());
-                        savedmovies.add(movie.getTitle());
+                        ui.saveMovie(movie);
                         chosenmoviefound = true;
-                        displaychoise();
+                        displayChoice();
                 }
             }
         }
-        displaychoise();
+        displayChoice();
 
         if (!chosenmoviefound) {
-            System.out.println("Movie not found, try again");
-            Searchmoviegenre();
+            ui.mediaNotFound();
+            SearchMovieGenre();
         }
     }
 
 
-    public void Searchseriegenre() {
+    public void SearchSerieGenre() {
         System.out.println("Enter the name of the genre you're looking for: ");
         ArrayList<Media> Series = io.readMovieData(seriesfile);
         String search = scanner.nextLine().trim();
@@ -197,8 +191,8 @@ FileIO io = new FileIO();
             }
         }
         if (!movieFound) {
-            System.out.println("Series not found, try again");
-            Searchseriegenre();
+            ui.mediaNotFound();
+            SearchSerieGenre();
         }
         System.out.println("Enter the title of the movie you want to see");
         String chosenseries = scanner.nextLine().trim();
@@ -209,24 +203,23 @@ FileIO io = new FileIO();
                 int choise = Integer.parseInt(scanner.nextLine());
                 switch(choise){
                     case 1:
-                        System.out.println("You are now watching " + series.getTitle());
-                        watchedseries.add(series.getTitle());
+                        ui.watchedSerie(series);
                         chosenseriesfound = true;
-                        displaychoise();
+                        displayChoice();
                         break;
                     case 2:
                         System.out.println("You have now saved " + series.getTitle());
                         savedseries.add(series.getTitle());
                         chosenseriesfound = true;
-                        displaychoise();
+                        displayChoice();
                 }
             }
         }
-        displaychoise();
+        displayChoice();
 
         if (!chosenseriesfound) {
-            System.out.println("Series not found, try again");
-            Searchmoviegenre();
+            ui.mediaNotFound();
+            SearchMovieGenre();
         }
     }
 
@@ -235,7 +228,7 @@ FileIO io = new FileIO();
         String password = getUserInput("Enter a password: ");
 
         if (isValidAccount(username, password)) {
-            System.out.println("You allready have a valid account. Try again");
+            System.out.println("You already have a valid account. Try again");
             createAccount();
         } else {
             saveAccount(username, password);
@@ -272,10 +265,10 @@ FileIO io = new FileIO();
     }
 
 
-    void displaychoise(){
+    void displayChoice(){
         System.out.println("Do you 1) Want to shut down the program or 2) return to startpage");
-        int menuchoise = Integer.parseInt(scanner.nextLine());
-        switch (menuchoise){
+        int menuChoice = Integer.parseInt(scanner.nextLine());
+        switch (menuChoice){
             case 1:
                 break;
             case 2:

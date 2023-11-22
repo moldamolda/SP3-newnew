@@ -4,8 +4,6 @@ public class Movie extends Media {
     String release;
     ArrayList<String> category;
 
-
-
     public Movie(String title, ArrayList<String> category, String release, double rating) {
         super(title, rating);
         this.release = release;
@@ -16,9 +14,6 @@ public class Movie extends Media {
     public ArrayList<String> getCategory() {
         return category;
     }
-
-
-
 
     // @Override
     public String toString() {

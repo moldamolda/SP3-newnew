@@ -1,4 +1,3 @@
-import java.util.List;
 import java.util.Scanner;
 
 public class Streamingservice {
@@ -25,40 +24,40 @@ public class Streamingservice {
         int choice = Integer.parseInt(scanner.nextLine());
         switch (choice) {
             case 1:
-                log.searchformovie();
+                log.searchForMovie();
                 break;
             case 2:
-                log.searchforseries();
+                log.searchForSeries();
                 break;
             case 3:
-                log.Searchmoviegenre();
+                log.SearchMovieGenre();
                 break;
             case 4:
-                log.Searchseriegenre();
+                log.SearchSerieGenre();
                 break;
             case 5:
-                for (String watchedmovie : log.watchedmovies) {
+                for (String watchedmovie : log.watchedMovies) {
                     System.out.println(watchedmovie);
                 }
-                log.displaychoise();
+                log.displayChoice();
                 break;
             case 6:
                 for (String savedmovies : log.savedmovies) {
                     System.out.println(savedmovies);
                 }
-                log.displaychoise();
+                log.displayChoice();
                 break;
             case 7:
                 for (String watchedseries : log.watchedseries) {
                     System.out.println(watchedseries);
                 }
-                log.displaychoise();
+                log.displayChoice();
                 break;
             case 8:
                 for (String savedseries : log.savedseries) {
                     System.out.println(savedseries);
                 }
-                log.displaychoise();
+                log.displayChoice();
                 break;
             case 9:
                 break;
