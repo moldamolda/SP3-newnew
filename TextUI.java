@@ -98,8 +98,8 @@ public class TextUI extends FileIO{
     }
 
     //metode til at fjerne et medie fra watchLaterList
-    public void removeFromToWatchSerieLaterList(Serie serie){
-        if(watchSerieLaterList.remove(serie)){
+    public void removeWatchedSerie(Serie series){
+        if(login.watchedseries.remove(series.getTitle())){
             System.out.println("Media has been removed from your watch later list");
         } else {
             System.out.println("Media not found in your watch later list");
