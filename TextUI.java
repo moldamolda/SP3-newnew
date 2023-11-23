@@ -104,6 +104,14 @@ public class TextUI extends FileIO{
         }
     }
 
+    public void removeWatchedMovie(Login login, Serie series){
+        if(login.watchedseries.remove(series.getTitle())){
+            System.out.println("Media has been removed from your watch later list");
+        } else {
+            System.out.println("Media not found in your watch later list");
+        }
+    }
+
     public void mediaNotFound(){
         System.out.println("Tittle not found try again");
 
