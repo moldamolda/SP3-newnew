@@ -14,78 +14,54 @@ public class FileIO {
 
     }
 
-    public ArrayList<Media> readMovieData(String path) {
-        ArrayList<Media> movieList = new ArrayList<>();
+    public ArrayList<Media> readMediaData(String path, boolean isMovie) {
+        ArrayList<Media> mediaList = new ArrayList<>();
+
         try (Scanner scanner = new Scanner(new File(path))) {
             while (scanner.hasNextLine()) {
-                //Scanning next line
+                // Scanning next line
                 String line = scanner.nextLine();
-                //splitting data when ; occurs
+                // Splitting data when ; occurs
                 String[] data = line.split(";");
-                //finding title
+
+                // Common attributes
                 String title = data[0];
-                //finding release date
                 String release = data[1].trim();
-                String[] categories = data[2].split(","); // Split categories directly
-                //finding rating by replacing , with . since rating is a double in the txt sheet
                 double rating = Double.parseDouble(data[3].replace(",", ".").trim());
 
-                // Create a new ArrayList for each movie
-                ArrayList<String> movieCategories = new ArrayList<>(Arrays.asList(categories));
+                // Splitting categories when , occurs
+                String[] categories;
+                categories = data[2].split(",");
+                if (isMovie) {
 
-                //Making movie object with the parameters
-                Media movie = new Movie(title, movieCategories, release, rating);
-                //adding movie to my movieList
-                movieList.add(movie);
-            }
+                    // Creating a new arraylist for each movie category
+                    ArrayList<String> movieCategories = new ArrayList<>(Arrays.asList(categories));
 
-        } catch (FileNotFoundException e) {
-            System.out.println("File not found");
-        }
+                    // Creating movie objects
+                    Movie movie = new Movie(title, movieCategories, release, rating);
 
-        return movieList;
-    }
-
-    public ArrayList<Media> readSeriesData(String path) {
-        ArrayList<Media> seriesList = new ArrayList<>();
-
-        try (Scanner scanner = new Scanner(new File(path))) {
-            while (scanner.hasNextLine()) {
-                //Scanning next line
-                String line = scanner.nextLine();
-                //splitting data when ; occurs
-                String[] data = line.split(";");
-                if (data.length >= 5) {
-                    //Finding title
-                    String title = data[0];
-                    //Finding Release date
-                    String release = data[1].trim();
-                    //Finding genre
-                    String genre = data[2];
-                    //replacing , with . since its a double and double's are determened with .
-                    double rating = Double.parseDouble(data[3].replace(",", ".").trim());
-                    //Finding seasons
+                    // Adding my movie objects to my mediaList
+                    mediaList.add(movie);
+                } else {
+                    // Data[4] is seasons
                     String seasons = data[4].trim();
-                    String[] categoriesArray = genre.split(","); // Split categories directly
 
-                    // Create a new ArrayList for each series
-                    ArrayList<String> seriesGenre = new ArrayList<>(Arrays.asList(categoriesArray));
-
-                    // Create a new ArrayList for each series
+                    // Creating a new ArrayList for each series category
                     ArrayList<String> seriesSeasons = new ArrayList<>(Arrays.asList(seasons.split(",")));
 
-                    //Adding elements to Serie object
-                    Serie serie = new Serie(title, seriesGenre, release, rating, seriesSeasons);
+                    // Creating new series objects
+                    Serie serie = new Serie(title, new ArrayList<>(Arrays.asList(categories)), release, rating, seriesSeasons);
 
-                    //Adding serie objects to seriesList
-                    seriesList.add(serie);
+                    // Adding Series objects to mediaList
+                    mediaList.add(serie);
                 }
+
             }
         } catch (FileNotFoundException e) {
             System.out.println("File not found");
         }
 
-        return seriesList;
+        return mediaList;
     }
 
 

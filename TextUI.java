@@ -1,6 +1,4 @@
 public class TextUI extends FileIO{
-    Login login = new Login();
-    User user = new User("","");
 
    /* public void displayMessage(String msg){
         System.out.println(msg);
@@ -71,7 +69,7 @@ public class TextUI extends FileIO{
 
     }*/
 
-   public void saveMovie(Media movie){
+   public void saveMovie(Login login, Media movie){
        System.out.println("You have now saved " + movie.getTitle());
        login.savedmovies.add(movie.getTitle());
         //watchMovieLaterList.add(movie);
@@ -79,26 +77,26 @@ public class TextUI extends FileIO{
     }
 
     //metode til at adde et medie til watchedList
-    public void watchedMovie(Media movie){
+    public void watchedMovie(Login login, Media movie){
         System.out.println("You have watched" + movie.getTitle());
         login.watchedMovies.add(movie.getTitle());
 
     }
 
-    public void saveSerie(Media series){
+    public void saveSerie(Login login, Media series){
         System.out.println("You have now saved " + series.getTitle());
         login.savedseries.add(series.getTitle());
     }
 
 
     //metode til at adde et medie til watchedList
-    public void watchedSerie(Media series){
+    public void watchedSerie(Login login, Media series){
         System.out.println("You are now watching " + series.getTitle());
         login.watchedseries.add(series.getTitle());
     }
 
     //metode til at fjerne et medie fra watchLaterList
-    public void removeWatchedSerie(Serie series){
+    public void removeWatchedSerie(Login login, Serie series){
         if(login.watchedseries.remove(series.getTitle())){
             System.out.println("Media has been removed from your watch later list");
         } else {

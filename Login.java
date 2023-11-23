@@ -21,11 +21,9 @@ public class Login {
     public ArrayList<String> savedmovies = new ArrayList<>();
     public  ArrayList<String> savedseries = new ArrayList<>();
 
-FileIO io = new FileIO();
-    static Login login = new Login();
-    private static final String userfile = "/Users/jimmymeggele/Documents/Intellij/SP3-newnew/Users.txt";
-    private static final String seriesfile = "/Users/jimmymeggele/Documents/Intellij/SP3-newnew/100bedsteserier.txt";
-    private static final String moviefile = "/Users/jimmymeggele/Documents/Intellij/SP3-newnew/100bedstefilm.txt";
+    private static final String userfile = "C:\\Users\\chris\\IdeaProjects\\SP3-newnew\\Users.txt";
+    private static final String seriesfile = "C:\\Users\\chris\\IdeaProjects\\SP3-newnew\\100bedsteserier.txt";
+    private static final String moviefile = "C:\\Users\\chris\\IdeaProjects\\SP3-newnew\\100bedstefilm.txt";
 
 
 
@@ -75,7 +73,7 @@ FileIO io = new FileIO();
     public void searchForSeries(){
         System.out.println("Enter the name of the series you're looking for: ");
         List<Media> allseries = new ArrayList<>();
-        allseries =   io.readSeriesData(seriesfile);
+        allseries =   io.readMediaData(seriesfile,false);
         String search = scanner.nextLine();
         boolean seriesfound = false;
         for(Media series: allseries){
@@ -84,12 +82,12 @@ FileIO io = new FileIO();
                 int choise = Integer.parseInt(scanner.nextLine());
                 switch(choise){
                     case 1:
-                        ui.watchedSerie(series);
+                        ui.watchedSerie(this, series);
                         seriesfound = true;
                         displayChoice();
                         break;
                     case 2:
-                        ui.saveSerie(series);
+                        ui.saveSerie(this, series);
                         seriesfound = true;
                         displayChoice();
                 }
@@ -97,13 +95,13 @@ FileIO io = new FileIO();
         }
         if (!seriesfound) {
             ui.mediaNotFound();
-            login.searchForSeries();
+            searchForSeries();
         }
     }
 
     public void searchForMovie() {
         System.out.println("Enter the name of the movie you're looking for: ");
-        List<Media> allMovies = io.readMovieData(moviefile);
+        List<Media> allMovies = io.readMediaData(moviefile,true);
         String search = scanner.nextLine().trim();
         boolean movieFound = false;
         for (Media movie : allMovies) {
@@ -112,12 +110,12 @@ FileIO io = new FileIO();
                 int choise = Integer.parseInt(scanner.nextLine());
                 switch(choise){
                     case 1:
-                        ui.watchedMovie(movie);
+                        ui.watchedMovie(this, movie);
                         movieFound = true;
                         displayChoice();
                         break;
                     case 2:
-                        ui.saveMovie(movie);
+                        ui.saveMovie(this, movie);
                         movieFound = true;
                         displayChoice();
                 }
@@ -134,7 +132,7 @@ FileIO io = new FileIO();
 
     public void SearchMovieGenre() {
         System.out.println("Enter the name of the genre you're looking for: ");
-        ArrayList<Media> Movies = io.readMovieData(moviefile);
+        ArrayList<Media> Movies = io.readMediaData(moviefile,true);
         String search = scanner.nextLine().trim();
         boolean movieFound = false;
         for (Media movie : Movies) {
@@ -159,12 +157,12 @@ FileIO io = new FileIO();
                 int choice = Integer.parseInt(scanner.nextLine());
                 switch(choice){
                     case 1:
-                        ui.watchedMovie(movie);
+                        ui.watchedMovie(this, movie);
                         chosenmoviefound = true;
                         displayChoice();
                         break;
                     case 2:
-                        ui.saveMovie(movie);
+                        ui.saveMovie(this, movie);
                         chosenmoviefound = true;
                         displayChoice();
                 }
@@ -181,7 +179,7 @@ FileIO io = new FileIO();
 
     public void SearchSerieGenre() {
         System.out.println("Enter the name of the genre you're looking for: ");
-        ArrayList<Media> Series = io.readMovieData(seriesfile);
+        ArrayList<Media> Series = io.readMediaData(seriesfile,false);
         String search = scanner.nextLine().trim();
         boolean movieFound = false;
         for (Media series : Series) {
@@ -206,7 +204,7 @@ FileIO io = new FileIO();
                 int choise = Integer.parseInt(scanner.nextLine());
                 switch(choise){
                     case 1:
-                        ui.watchedSerie(series);
+                        ui.watchedSerie(this, series);
                         chosenseriesfound = true;
                         displayChoice();
                         break;
@@ -237,6 +235,7 @@ FileIO io = new FileIO();
             saveAccount(username, password);
             System.out.println("Account created successfully.");
             users.add(new User(username, password));
+            startmenu();
         }
     }
 
