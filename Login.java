@@ -24,6 +24,7 @@ public class Login {
     private static final String moviefile = "C:\\Users\\danie\\IdeaProjects\\SP3-newnew\\100bedstefilm.txt";
 
     public static void main(String[] args) {
+        Login login = new Login();
         login.startmenu();
     }
 
