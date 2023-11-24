@@ -17,12 +17,12 @@ public class Movie extends Media {
 
     // @Override
     public String toString() {
-        return "Movie{" +
-                "title='" + title + '\'' +
-                ", release=" + release +
-                ", rating=" + rating +
-                ", category='" + category + '\'' +
-                '}';
+        return "Movie: " +
+                "title: '" + title + '\'' +
+                ", release: " + release +
+                ", rating: " + rating +
+                ", category: " + category+
+                "\n-------------------------";
 
 
     }
