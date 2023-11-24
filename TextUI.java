@@ -12,7 +12,7 @@ public class TextUI extends FileIO{
 
     //metode til at adde et medie til watchedList
     public void watchedMovie(Login login, Media movie){
-        System.out.println("You have watched " + movie.getTitle());
+        System.out.println("You have watched" + movie.getTitle());
         login.watchedMovies.add(movie.getTitle());
 
     }
@@ -44,6 +44,13 @@ public class TextUI extends FileIO{
         System.out.println("Tittle not found try again");
 
     }
-
+    //metode til at fjerne et medie fra watchLaterList
+    /*public void removeMovie(Movie movie){
+        if(getWatchMovieLaterList().remove(movie)){
+            System.out.println("Media has been removed from your watch later list");
+        } else {
+            System.out.println("Media not found in your watch later list");
+        }
+    }*/
 
 }

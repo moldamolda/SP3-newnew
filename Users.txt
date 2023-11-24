@@ -2,7 +2,3 @@ hej ; hej
 nej ; nej
 yo ; yo
 hej ; kaj
-d ; d
-nej ; nej
-yo ; yo
-hej ; kaj

@@ -10,8 +10,6 @@ public class Login {
 
     FileIO io = new FileIO();
     TextUI ui = new TextUI();
-    static Login login = new Login();
-
     Streamingservice s1;
     Scanner scanner = new Scanner(System.in);
     ArrayList<User> users = new ArrayList<>();

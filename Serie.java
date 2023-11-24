@@ -11,7 +11,6 @@ public class Serie extends Media{
         this.Seasons=Seasons;
     }
 
-
     @Override
     public ArrayList<String> getCategory() {
         return new ArrayList<>(category);
@@ -20,13 +19,12 @@ public class Serie extends Media{
 
     @Override
     public String toString() {
-        return "Serie{" +
-                "title='" + title + '\'' +
-                ", release='" + release + '\'' +
-                ", category=" + getCategory() +
-                ", rating=" + rating +
-                ", seasons=" + Seasons +
-                '}';
+        return  "Title: " + title +
+                "\nRelease Date: " + release +
+                "\nCategory: " + getCategory() +
+                "\nRating: " + rating +
+                "\nSeasons: " + Seasons +
+                "\n-------------------------";
     }
 
 
