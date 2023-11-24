@@ -1,0 +1,4 @@
+hej ; hej
+nej ; nej
+yo ; yo
+hej ; kaj
