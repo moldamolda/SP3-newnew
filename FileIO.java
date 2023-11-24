@@ -1,11 +1,8 @@
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
-
 
 public class FileIO {
 
@@ -19,69 +16,43 @@ public class FileIO {
 
         try (Scanner scanner = new Scanner(new File(path))) {
             while (scanner.hasNextLine()) {
-                // Scanning next line
-                String line = scanner.nextLine();
-                // Splitting data when ; occurs
-                String[] data = line.split(";");
+
+                String line = scanner.nextLine(); // Scanning next line
+
+                String[] data = line.split(";"); // Splitting data when ; occurs
 
                 // Common attributes
                 String title = data[0];
                 String release = data[1].trim();
                 double rating = Double.parseDouble(data[3].replace(",", ".").trim());
 
-                // Splitting categories when , occurs
+
                 String[] categories;
-                categories = data[2].split(",");
+                categories = data[2].split(","); // Splitting categories when , occurs
                 if (isMovie) {
 
-                    // Creating a new arraylist for each movie category
-                    ArrayList<String> movieCategories = new ArrayList<>(Arrays.asList(categories));
+                    ArrayList<String> movieCategories = new ArrayList<>(Arrays.asList(categories));  // Creating a new arraylist for each movie category
 
-                    // Creating movie objects
-                    Movie movie = new Movie(title, movieCategories, release, rating);
+                    Movie movie = new Movie(title, movieCategories, release, rating);       // Creating movie objects
 
-                    // Adding my movie objects to my mediaList
-                    mediaList.add(movie);
+                    mediaList.add(movie); // Adding my movie objects to my mediaList
                 } else {
-                    // Data[4] is seasons
-                    String seasons = data[4].trim();
 
-                    // Creating a new ArrayList for each series category
-                    ArrayList<String> seriesSeasons = new ArrayList<>(Arrays.asList(seasons.split(",")));
+                    String seasons = data[4].trim(); // Data[4] is seasons
 
-                    // Creating new series objects
-                    Serie serie = new Serie(title, new ArrayList<>(Arrays.asList(categories)), release, rating, seriesSeasons);
+                    ArrayList<String> seriesSeasons = new ArrayList<>(Arrays.asList(seasons.split(",")));  // Creating a new ArrayList for each series category. splitting  season[4] to get seasons
 
-                    // Adding Series objects to mediaList
-                    mediaList.add(serie);
+                    Serie serie = new Serie(title, new ArrayList<>(Arrays.asList(categories)), release, rating, seriesSeasons);  // Creating new series objects
+
+                    mediaList.add(serie);    // Adding Series objects to mediaList
                 }
 
             }
         } catch (FileNotFoundException e) {
-            System.out.println("File not found");
+            System.out.println("File not found"); //catching error
         }
 
         return mediaList;
-    }
-
-
-    public ArrayList<User> readUsers(String path) {
-        ArrayList<User> users = new ArrayList<>();
-        try (Scanner scanner = new Scanner(new File(path))) {
-            while (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
-                String[] data = line.split(";");
-                String username = data[0];
-                String password = (data[1].trim());
-                User user = new User(username, password);
-                users.add(user);
-            }
-
-        } catch (FileNotFoundException e) {
-            System.out.println("file not found");
-        }
-
-        return users;
     }
 
 }

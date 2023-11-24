@@ -39,12 +39,14 @@ public class Streamingservice {
                 for (String watchedmovie : log.watchedMovies) {
                     System.out.println(watchedmovie);
                 }
+
                 log.displayChoice();
                 break;
             case 6:
                 for (String savedmovies : log.savedmovies) {
                     System.out.println(savedmovies);
                 }
+
                 log.displayChoice();
                 break;
             case 7:

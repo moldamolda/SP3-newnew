@@ -15,6 +15,11 @@ public class Movie extends Media {
         return category;
     }
 
+    @Override
+    public String getTitle() {
+        return super.getTitle();
+    }
+
     // @Override
     public String toString() {
         return "Movie{" +
