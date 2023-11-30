@@ -12,7 +12,7 @@ public class Streamingservice {
     }
 
     public void displayStartMenu() {
-        System.out.println("1) Søg efter et bestemt Medie");
+        System.out.println("1) Søg efter et bestemt Medie ");
         System.out.println("2) Søg efter en bestemt Medie kategori");
         System.out.println("3) Se din liste over sete film");
         System.out.println("4) Se din liste over gemte film");
