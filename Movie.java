@@ -6,7 +6,7 @@ public class Movie extends Media {
 
     public Movie(String title, ArrayList<String> category, String release, double rating) {
         super(title, rating);
-        this.release = release;
+        this.release = release  ;
         this.category=category;
     }
 
