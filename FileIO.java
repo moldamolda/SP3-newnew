@@ -4,12 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class FileIO {
+public class FileIO{
 
-
-    public static void main(String[] args) {
-
-    }
 
     public ArrayList<Media> readMediaData(String path, boolean isMovie) {
         ArrayList<Media> mediaList = new ArrayList<>();
